@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x024E7FB43D015474 (kossebau@kde.org)
 #
 Name     : okteta
-Version  : 0.26.1
-Release  : 1
-URL      : https://download.kde.org/stable/okteta/0.26.1/src/okteta-0.26.1.tar.xz
-Source0  : https://download.kde.org/stable/okteta/0.26.1/src/okteta-0.26.1.tar.xz
-Source99 : https://download.kde.org/stable/okteta/0.26.1/src/okteta-0.26.1.tar.xz.sig
+Version  : 0.26.2
+Release  : 2
+URL      : https://download.kde.org/stable/okteta/0.26.2/src/okteta-0.26.2.tar.xz
+Source0  : https://download.kde.org/stable/okteta/0.26.2/src/okteta-0.26.2.tar.xz
+Source99 : https://download.kde.org/stable/okteta/0.26.2/src/okteta-0.26.2.tar.xz.sig
 Summary  : KDE hex editor for viewing and editing the raw data of files
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
@@ -101,14 +101,14 @@ locales components for the okteta package.
 
 
 %prep
-%setup -q -n okteta-0.26.1
+%setup -q -n okteta-0.26.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560952624
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562163149
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -120,11 +120,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1560952624
+export SOURCE_DATE_EPOCH=1562163149
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okteta
 cp COPYING %{buildroot}/usr/share/package-licenses/okteta/COPYING
