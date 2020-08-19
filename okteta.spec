@@ -5,14 +5,14 @@
 # Source0 file verified with key 0x0A345FB086E797D9 (kossebau@kde.org)
 #
 Name     : okteta
-Version  : 0.26.3
-Release  : 3
-URL      : https://download.kde.org/stable/okteta/0.26.3/src/okteta-0.26.3.tar.xz
-Source0  : https://download.kde.org/stable/okteta/0.26.3/src/okteta-0.26.3.tar.xz
-Source1  : https://download.kde.org/stable/okteta/0.26.3/src/okteta-0.26.3.tar.xz.sig
-Summary  : KDE hex editor for viewing and editing the raw data of files
+Version  : 0.26.4
+Release  : 4
+URL      : https://download.kde.org/stable/okteta/0.26.4/src/okteta-0.26.4.tar.xz
+Source0  : https://download.kde.org/stable/okteta/0.26.4/src/okteta-0.26.4.tar.xz
+Source1  : https://download.kde.org/stable/okteta/0.26.4/src/okteta-0.26.4.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0 LGPL-2.1
+License  : BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
 Requires: okteta-bin = %{version}-%{release}
 Requires: okteta-data = %{version}-%{release}
 Requires: okteta-lib = %{version}-%{release}
@@ -20,19 +20,16 @@ Requires: okteta-license = %{version}-%{release}
 Requires: okteta-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
+BuildRequires : kdoctools-dev
+BuildRequires : ki18n-dev
 BuildRequires : qca-qt5-dev
 
 %description
-How to add a new binary filter
-==============================
-1. Creating source files
-------------------------
-Copy the template files "template_bytearrayfilter.*" from
-okteta/kasten/controllers/view/libbytearrayfilter/filter/template/
-to
-okteta/kasten/controllers/view/libbytearrayfilter/filter
-using a new file name matching the class name,
-e.g. for "MyByteArrayFilter" use "mybytearrayfilter.*".
+Okteta project
+===================
+made within the KDE community.
+Author/Maintainer: Friedrich W. H. Kossebau <kossebau@kde.org>
 
 %package bin
 Summary: bin components for the okteta package.
@@ -59,7 +56,6 @@ Requires: okteta-lib = %{version}-%{release}
 Requires: okteta-bin = %{version}-%{release}
 Requires: okteta-data = %{version}-%{release}
 Provides: okteta-devel = %{version}-%{release}
-Requires: okteta = %{version}-%{release}
 Requires: okteta = %{version}-%{release}
 
 %description dev
@@ -101,37 +97,44 @@ locales components for the okteta package.
 
 
 %prep
-%setup -q -n okteta-0.26.3
-cd %{_builddir}/okteta-0.26.3
+%setup -q -n okteta-0.26.4
+cd %{_builddir}/okteta-0.26.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581099918
+export SOURCE_DATE_EPOCH=1597862978
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1581099918
+export SOURCE_DATE_EPOCH=1597862978
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okteta
-cp %{_builddir}/okteta-0.26.3/COPYING %{buildroot}/usr/share/package-licenses/okteta/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/okteta-0.26.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/okteta/fcbf818f92ef8679a88f3778b12b4c8b5810545b
-cp %{_builddir}/okteta-0.26.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/okteta/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/okteta-0.26.4/COPYING.DOC %{buildroot}/usr/share/package-licenses/okteta/fcbf818f92ef8679a88f3778b12b4c8b5810545b
+cp %{_builddir}/okteta-0.26.4/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/okteta/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/okteta-0.26.4/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/okteta/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/okteta-0.26.4/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/okteta/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/okteta-0.26.4/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/okteta/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/okteta-0.26.4/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/okteta/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/okteta-0.26.4/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/okteta/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/okteta-0.26.4/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okteta/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/okteta-0.26.4/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okteta/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/okteta-0.26.4/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/okteta/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/okteta-0.26.4/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/okteta/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
@@ -154,9 +157,12 @@ popd
 %defattr(-,root,root,-)
 /usr/share/applications/org.kde.okteta.desktop
 /usr/share/config.kcfg/structureviewpreferences.kcfg
+/usr/share/icons/hicolor/128x128/apps/okteta.png
 /usr/share/icons/hicolor/16x16/apps/okteta.png
+/usr/share/icons/hicolor/22x22/apps/okteta.png
 /usr/share/icons/hicolor/32x32/apps/okteta.png
 /usr/share/icons/hicolor/48x48/apps/okteta.png
+/usr/share/icons/hicolor/64x64/apps/okteta.png
 /usr/share/knsrcfiles/okteta-structures.knsrc
 /usr/share/kservices5/oktetapart.desktop
 /usr/share/metainfo/org.kde.okteta.appdata.xml
@@ -702,8 +708,14 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/okteta/7c203dee3a03037da436df03c4b25b659c073976
-/usr/share/package-licenses/okteta/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+/usr/share/package-licenses/okteta/2a638514c87c4923c0570c55822620fad56f2a33
+/usr/share/package-licenses/okteta/3c3d7573e137d48253731c975ecf90d74cfa9efe
+/usr/share/package-licenses/okteta/6091db0aead0d90182b93d3c0d09ba93d188f907
+/usr/share/package-licenses/okteta/6f1f675aa5f6a2bbaa573b8343044b166be28399
+/usr/share/package-licenses/okteta/757b86330df80f81143d5916b3e92b4bcb1b1890
+/usr/share/package-licenses/okteta/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/okteta/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+/usr/share/package-licenses/okteta/e458941548e0864907e654fa2e192844ae90fc32
 /usr/share/package-licenses/okteta/fcbf818f92ef8679a88f3778b12b4c8b5810545b
 
 %files locales -f libkasten.lang -f liboktetacore.lang -f liboktetakasten.lang -f okteta.lang -f oktetapart.lang -f liboktetagui.lang
