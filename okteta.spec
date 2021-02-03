@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x0A345FB086E797D9 (kossebau@kde.org)
 #
 Name     : okteta
-Version  : 0.26.4
-Release  : 4
-URL      : https://download.kde.org/stable/okteta/0.26.4/src/okteta-0.26.4.tar.xz
-Source0  : https://download.kde.org/stable/okteta/0.26.4/src/okteta-0.26.4.tar.xz
-Source1  : https://download.kde.org/stable/okteta/0.26.4/src/okteta-0.26.4.tar.xz.sig
+Version  : 0.26.5
+Release  : 5
+URL      : https://download.kde.org/stable/okteta/0.26.5/src/okteta-0.26.5.tar.xz
+Source0  : https://download.kde.org/stable/okteta/0.26.5/src/okteta-0.26.5.tar.xz
+Source1  : https://download.kde.org/stable/okteta/0.26.5/src/okteta-0.26.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -21,8 +21,6 @@ Requires: okteta-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
-BuildRequires : kdoctools-dev
-BuildRequires : ki18n-dev
 BuildRequires : qca-qt5-dev
 
 %description
@@ -97,15 +95,15 @@ locales components for the okteta package.
 
 
 %prep
-%setup -q -n okteta-0.26.4
-cd %{_builddir}/okteta-0.26.4
+%setup -q -n okteta-0.26.5
+cd %{_builddir}/okteta-0.26.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1597862978
+export SOURCE_DATE_EPOCH=1612312534
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -121,20 +119,20 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1597862978
+export SOURCE_DATE_EPOCH=1612312534
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okteta
-cp %{_builddir}/okteta-0.26.4/COPYING.DOC %{buildroot}/usr/share/package-licenses/okteta/fcbf818f92ef8679a88f3778b12b4c8b5810545b
-cp %{_builddir}/okteta-0.26.4/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/okteta/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/okteta-0.26.4/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/okteta/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/okteta-0.26.4/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/okteta/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/okteta-0.26.4/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/okteta/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/okteta-0.26.4/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/okteta/6f1f675aa5f6a2bbaa573b8343044b166be28399
-cp %{_builddir}/okteta-0.26.4/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/okteta/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/okteta-0.26.4/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okteta/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/okteta-0.26.4/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okteta/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/okteta-0.26.4/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/okteta/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/okteta-0.26.4/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/okteta/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/okteta-0.26.5/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/okteta/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/okteta-0.26.5/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/okteta/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/okteta-0.26.5/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/okteta/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/okteta-0.26.5/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/okteta/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/okteta-0.26.5/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/okteta/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/okteta-0.26.5/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/okteta/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/okteta-0.26.5/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/okteta/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/okteta-0.26.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okteta/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/okteta-0.26.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/okteta/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/okteta-0.26.5/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/okteta/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/okteta-0.26.5/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/okteta/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
@@ -199,6 +197,7 @@ popd
 /usr/include/KastenControllers/Kasten/TerminalToolFactory
 /usr/include/KastenControllers/Kasten/TerminalToolViewFactory
 /usr/include/KastenControllers/Kasten/ToolListMenuControllerFactory
+/usr/include/KastenControllers/Kasten/UiColorSchemeControllerFactory
 /usr/include/KastenControllers/Kasten/VersionControllerFactory
 /usr/include/KastenControllers/Kasten/VersionViewToolFactory
 /usr/include/KastenControllers/Kasten/VersionViewToolViewFactory
@@ -230,6 +229,7 @@ popd
 /usr/include/KastenControllers/kasten/terminaltoolfactory.hpp
 /usr/include/KastenControllers/kasten/terminaltoolviewfactory.hpp
 /usr/include/KastenControllers/kasten/toollistmenucontrollerfactory.hpp
+/usr/include/KastenControllers/kasten/uicolorschemecontrollerfactory.hpp
 /usr/include/KastenControllers/kasten/versioncontrollerfactory.hpp
 /usr/include/KastenControllers/kasten/versionviewtoolfactory.hpp
 /usr/include/KastenControllers/kasten/versionviewtoolviewfactory.hpp
@@ -713,10 +713,10 @@ popd
 /usr/share/package-licenses/okteta/6091db0aead0d90182b93d3c0d09ba93d188f907
 /usr/share/package-licenses/okteta/6f1f675aa5f6a2bbaa573b8343044b166be28399
 /usr/share/package-licenses/okteta/757b86330df80f81143d5916b3e92b4bcb1b1890
+/usr/share/package-licenses/okteta/7697008f58568e61e7598e796eafc2a997503fde
 /usr/share/package-licenses/okteta/7d9831e05094ce723947d729c2a46a09d6e90275
 /usr/share/package-licenses/okteta/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
 /usr/share/package-licenses/okteta/e458941548e0864907e654fa2e192844ae90fc32
-/usr/share/package-licenses/okteta/fcbf818f92ef8679a88f3778b12b4c8b5810545b
 
 %files locales -f libkasten.lang -f liboktetacore.lang -f liboktetakasten.lang -f okteta.lang -f oktetapart.lang -f liboktetagui.lang
 %defattr(-,root,root,-)
