@@ -8,11 +8,11 @@
 # Source0 file verified with key 0x6AACDD263C2CEFD4 (kossebau@kde.org)
 #
 Name     : okteta
-Version  : 0.26.14
-Release  : 12
-URL      : https://download.kde.org/stable/okteta/0.26.14/src/okteta-0.26.14.tar.xz
-Source0  : https://download.kde.org/stable/okteta/0.26.14/src/okteta-0.26.14.tar.xz
-Source1  : https://download.kde.org/stable/okteta/0.26.14/src/okteta-0.26.14.tar.xz.sig
+Version  : 0.26.15
+Release  : 13
+URL      : https://download.kde.org/stable/okteta/0.26.15/src/okteta-0.26.15.tar.xz
+Source0  : https://download.kde.org/stable/okteta/0.26.15/src/okteta-0.26.15.tar.xz
+Source1  : https://download.kde.org/stable/okteta/0.26.15/src/okteta-0.26.15.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.1 LGPL-3.0
@@ -98,15 +98,15 @@ locales components for the okteta package.
 
 
 %prep
-%setup -q -n okteta-0.26.14
-cd %{_builddir}/okteta-0.26.14
+%setup -q -n okteta-0.26.15
+cd %{_builddir}/okteta-0.26.15
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1703121900
+export SOURCE_DATE_EPOCH=1704209087
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -165,7 +165,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1703121900
+export SOURCE_DATE_EPOCH=1704209087
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/okteta
 cp %{_builddir}/okteta-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/okteta/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
